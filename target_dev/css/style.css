@@ -1,3 +1,30 @@
-.poo {
-  color: 'test';
+.test {
+	-webkit-transition: all .4s;
+	        transition: all .4s;
 }
+
+.something {
+	left: '0px';
+}
+
+.else {
+	left: '0px';
+}
+
+.test2 {
+	-webkit-transition: all .4s;
+	        transition: all .4s;
+}
+
+@media (max-width: 500px) {
+
+.test {
+	display: none;
+}
+
+.test2 {
+	display: none;
+}
+
+}
+

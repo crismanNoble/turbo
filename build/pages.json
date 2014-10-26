@@ -1,7 +1,16 @@
 {
-	"index": {
-		"href": "index2.html",
-		"title": "The Homepage",
-		"description": "Test description"
-	}
+	"pages": [ 
+		{
+			"pageName" : "index",
+			"href": "index.html",
+			"title": "The Homepage",
+			"description": "Test description"
+		},
+		{
+			"pageName" : "index2",
+			"href": "index2.html",
+			"title": "The Homepage",
+			"description": "Test description"
+		}
+	]
 }
