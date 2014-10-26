@@ -5,6 +5,7 @@ module.exports = function(grunt) {
 	//normal stuff
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	//css
 	grunt.loadNpmTasks('grunt-contrib-less');
@@ -42,7 +43,6 @@ module.exports = function(grunt) {
 	});
 
 	//for prod it would be cool if..
-	//js got linted, checked for console logs, then minified
 	//upload to ftp if all looked good (https://www.npmjs.org/package/grunt-ftp-push)
 	//some kind of git task? (https://www.npmjs.org/package/grunt-git-them-all)
 
@@ -249,7 +249,34 @@ module.exports = function(grunt) {
 		      dest: '<%= dirs.temp %>'
 		    }]	
 			}
-	  }
+	  },
+
+	  watch: {
+	  	all: {
+		    files: '<%= dirs.source %>/**/*.{less,handlebars,js,jpg,gif,png}',
+		    tasks: ['rebuild'],
+		  },
+		  styles: {
+		    files: '<%= dirs.source %>/**/*.less',
+		    tasks: ['rebuild'],
+		  },
+		  markup: {
+		    files: '<%= dirs.source %>/**/*.handlebars',
+		    tasks: ['rebuild'],
+		  },
+		  scripts: {
+		    files: '<%= dirs.source %>/**/*.js',
+		    tasks: ['rebuild'],
+		  },
+		  images: {
+		    files: '<%= dirs.source %>/**/*.{jpg,gif,png}',
+		    tasks: ['rebuild'],
+		  },
+		  fixSourceImages: {
+		  	files: '<%= dirs.source %>/**/*.{jpg,gif,png}',
+		  	tasks: ['optimizeSourceImages']	
+		  }
+		}
 		
 	});
 
@@ -267,6 +294,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('production', ['clean:production','development','less:production','js-dist','html_minify:production','copy-dist']);
 
 	//defualt tasks
-	grunt.registerTask('default', ['production']);
+	grunt.registerTask('rebuild', ['production'])
+	grunt.registerTask('default', ['production','watch:all']);
 
 };
