@@ -1,0 +1,1 @@
+for(var test=3,fart=0;test>fart;fart++);
