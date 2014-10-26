@@ -20,6 +20,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
 	//images
+	grunt.loadNpmTasks('grunt-retinafy');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 
 	var pageData = grunt.file.readJSON('./build/pages.json');
@@ -63,7 +64,8 @@ module.exports = function(grunt) {
 		clean: {
 			development: '<%= dirs.target.development %>',
 			production: '<%= dirs.target.production %>',
-			temp: ['<%= dirs.temp %>','<%= dirs.temp2 %>']
+			temp: ['<%= dirs.temp %>','<%= dirs.temp2 %>'],
+			fixsource: ['<%= dirs.source %>/images/']
 		},
 
 		less : {
@@ -194,10 +196,22 @@ module.exports = function(grunt) {
 	  		},
 	  		files: [{
 	        expand: true,
-	        cwd: '<%= dirs.source %>/',
+	        cwd: '<%= dirs.temp %>/',
 	        src: ['**/*.{png,jpg,gif}'],
 	        dest: '<%= dirs.target.development %>/'
 	      }]
+	  	},
+	  	fixsource: {
+	  		options: {
+	  			optimizationLevel: 1,
+	  			progressive: true
+	  		},
+	  		files: [{
+	        expand: true,
+	        cwd: '<%= dirs.source %>/',
+	        src: ['**/*.{png,jpg,gif}'],
+	        dest: '<%= dirs.temp %>/'
+	      }]	
 	  	}
 	  },
 
@@ -210,7 +224,32 @@ module.exports = function(grunt) {
 	        dest: '<%= dirs.target.production %>/'
 	      }]
 		  },
-		}
+		  fixsource: {
+		  	files: [{
+	        expand: true,
+	        cwd: '<%= dirs.temp %>/',
+	        src: ['images/*'],
+	        dest: '<%= dirs.source %>/'
+	      }]
+		  } 
+		},
+
+		retinafy: {
+			development:{
+				options: {
+		      sizes: {
+		        '50%':  { suffix: '' },
+		        '100%': { suffix: '@2x' }
+		      }
+		    },
+		    files: [{
+		      expand: true,
+		      cwd: 'src/',
+		      src: ['**/*.{jpg,gif,png}'],
+		      dest: '<%= dirs.temp %>'
+		    }]	
+			}
+	  }
 		
 	});
 
@@ -220,8 +259,11 @@ module.exports = function(grunt) {
 	grunt.registerTask('js-dist',['uglify:footer-dist','uglify:header-dist']);
 	grunt.registerTask('copy-dist',['copy:images']);
 
+	// cool tasks
+	grunt.registerTask('optimizeSourceImages',['imagemin:fixsource','copy:fixsource','clean:temp'])
+
 	//main tasks
-	grunt.registerTask('development', ['clean:development','less:development','buildTemplates','prettify:development','cmq','autoprefixer:development','js-dev','imagemin:development','clean:temp']);
+	grunt.registerTask('development', ['clean:development','less:development','buildTemplates','prettify:development','cmq','autoprefixer:development','js-dev','retinafy:development','imagemin:development','clean:temp']);
 	grunt.registerTask('production', ['clean:production','development','less:production','js-dist','html_minify:production','copy-dist']);
 
 	//defualt tasks
