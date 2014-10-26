@@ -55,8 +55,8 @@ module.exports = function(grunt) {
 			'temp':'tmp',
 			'temp2':'tmp2',
 			target : {
-				development : 'target_dev',
-				production : 'target_dist',
+				development : 'development',
+				production : 'production',
 			}
 		},
 
