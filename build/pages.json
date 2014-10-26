@@ -4,13 +4,22 @@
 			"pageName" : "index",
 			"href": "index.html",
 			"title": "The Homepage",
-			"description": "Test description"
+			"description": "Test description",
+			"relativePath": false
 		},
 		{
 			"pageName" : "index2",
 			"href": "index2.html",
 			"title": "The Homepage",
-			"description": "Test description"
+			"description": "Test description",
+			"relativePath": false
+		},
+		{
+			"pageName": "about",
+			"href":"test/about.html",
+			"title":"about us",
+			"description":"about our company",
+			"relativePath": "../"
 		}
 	]
 }

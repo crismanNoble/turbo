@@ -48,6 +48,7 @@ module.exports = function(grunt) {
 
 	//for dev it would be cool to:
 	//look at including a font folder and moving it to production
+	//still need linting
 
 	grunt.initConfig({
 
@@ -111,7 +112,7 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: '<%= dirs.temp %>/',
 				ext: '.html',
-				src: ['*.html'],
+				src: ['**/*.html'],
 				dest: "<%= dirs.target.development %>/"
 
 			}
