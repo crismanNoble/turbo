@@ -1,7 +1,7 @@
 # Turbo
 ### Ramp up a new project quickly
 
-![via The Noun Project](/logo.png)
+<img src='https://raw.githubusercontent.com/crismanNoble/turbo/master/icon_12193.png' width="100">
 
 A frontend workflow that is geared towards creating simple, static websites.
 
@@ -21,7 +21,7 @@ Requires:
 Get Started:
 * clone
 * `npm install`
-* `grunt watch`
+* `grunt`
 * edit something in the `src` folder
 * view the changes in the `development` or `production` folders
 
