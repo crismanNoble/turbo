@@ -4,22 +4,25 @@
 			"pageName" : "index",
 			"href": "index.html",
 			"title": "The Homepage",
-			"description": "Test description",
-			"relativePath": false
+			"description": "Test description"
 		},
 		{
 			"pageName" : "index2",
 			"href": "index2.html",
 			"title": "The Homepage",
-			"description": "Test description",
-			"relativePath": false
+			"description": "Test description"
 		},
 		{
 			"pageName": "about",
 			"href":"test/about.html",
 			"title":"about us",
-			"description":"about our company",
-			"relativePath": "../"
+			"description":"about our company"
+		},
+		{
+			"pageName": "deep",
+			"href":"test/deep/deep.html",
+			"title":"deep test",
+			"description":"this is deep yo"
 		}
 	]
 }

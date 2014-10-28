@@ -33,6 +33,14 @@ module.exports = function(grunt) {
 	};
 
 	_.each(pageData.pages,function(d,i){
+		d.relativePath = false;
+		if(d.href.split('/').length > 1) {
+			var newPath = '';
+			for(var i = 1; i < d.href.split('/').length; i++){
+				newPath += '../'
+			}
+			d.relativePath = newPath;
+		}
 		var taskObj = _.extend({
 			'template': '<%= dirs.source %>/markup/pages/'+d.pageName+'.handlebars',
 			'templateData' : d,
