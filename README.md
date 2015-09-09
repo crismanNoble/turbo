@@ -26,4 +26,6 @@ Get Started:
 * edit something in the `src` folder
 * view the changes in the `development` or `production` folders
 
-
+Looking for something simpler?
+* Try out the `light` branch, https://github.com/crismanNoble/turbo/tree/light
+* `git checkout light`
